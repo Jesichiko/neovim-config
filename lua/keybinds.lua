@@ -16,3 +16,8 @@ vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
 
 --lazy keybinds
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", {})
+
+--terminal
+vim.keymap.set("n", "<leader>ñ", "<cmd>term<CR>", {})
+vim.keymap.set("t", "<leader>,", "<cmd>b#<CR>", {})
+
