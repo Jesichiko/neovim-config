@@ -16,8 +16,3 @@ vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
 
 --lazy keybinds
 vim.keymap.set("n", "<leader>l", "<cmd>Lazy<CR>", {})
-
---toggle diagnostics
-vim.keymap.set('n', '<leader>td', function()
-    require("null-ls").toggle("diagnostics")
-end, { desc = "Toggle diagnostics" })
