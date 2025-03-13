@@ -11,7 +11,7 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "jdtls", "pyright", "kotlin_language_server", "ts_ls" },
+				automatic_installation = true,
 			})
 		end,
 	},
@@ -21,27 +21,14 @@ return {
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.clangd.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.jdtls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.pyright.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.hls.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.kotlin_language_server.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.ts_ls.setup({
-				capabilities = capabilities,
-			})
+			local mason_lspconfig = require("mason-lspconfig")
+
+			for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
+				lspconfig[server].setup({
+					capabilities = capabilities,
+
+				})
+			end
 		end,
 	},
 }
